@@ -1,0 +1,174 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* E-commerce theme colors */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --primary: 210 85% 30%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 9%;
+    --accent: 210 85% 30%;
+    --accent-foreground: 0 0% 100%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 210 85% 30%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --radius: 0.75rem;
+    
+    /* Custom e-commerce variables */
+    --brand-blue: 210 85% 30%;
+    --brand-blue-light: 210 85% 40%;
+    --brand-blue-dark: 210 85% 20%;
+    --success: 142 76% 36%;
+    --warning: 38 92% 50%;
+    --info: 199 89% 48%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--brand-blue)), hsl(var(--brand-blue-light)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--brand-blue)) 0%, hsl(var(--brand-blue-dark)) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(var(--muted) / 0.3));
+    --gradient-offers: linear-gradient(135deg, hsl(var(--primary) / 0.1), hsl(var(--secondary) / 0.1));
+    
+    /* Shadows */
+    --shadow-card: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-elevated: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-floating: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  }
+
+  .dark {
+    --background: 0 0% 9%;
+    --foreground: 0 0% 95%;
+    --primary: 210 85% 40%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 98%;
+    --accent: 210 85% 40%;
+    --accent-foreground: 0 0% 9%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 210 85% 40%;
+    --card: 0 0% 9%;
+    --card-foreground: 0 0% 95%;
+    --popover: 0 0% 9%;
+    --popover-foreground: 0 0% 95%;
+    
+    /* Dark mode custom variables */
+    --brand-blue: 210 85% 40%;
+    --brand-blue-light: 210 85% 50%;
+    --brand-blue-dark: 210 85% 30%;
+    
+    /* Dark gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--brand-blue)), hsl(var(--brand-blue-light)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--brand-blue)) 0%, hsl(var(--brand-blue-dark)) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(var(--muted) / 0.3));
+    --gradient-offers: linear-gradient(135deg, hsl(var(--primary) / 0.1), hsl(var(--secondary) / 0.1));
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-poppins;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* RTL Support */
+  [dir="rtl"] {
+    text-align: right;
+  }
+  
+  [dir="rtl"] .ltr-content {
+    text-align: left;
+  }
+}
+
+@layer components {
+  /* Loading animations */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out;
+  }
+  
+  .animate-scale-in {
+    animation: scaleIn 0.3s ease-out;
+  }
+  
+  /* Hover effects */
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-elevated);
+  }
+  
+  /* Custom scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary));
+    border-radius: 3px;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0; 
+    transform: translateY(30px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes scaleIn {
+  from { 
+    opacity: 0; 
+    transform: scale(0.9); 
+  }
+  to { 
+    opacity: 1; 
+    transform: scale(1); 
+  }
+}
